@@ -38,6 +38,7 @@ dependencies:
   auto_route: ^7.7.0
   google_fonts: ^5.1.0
   provider: ^6.0.5
+  flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
   flutter_test:

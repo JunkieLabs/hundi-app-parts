@@ -18,6 +18,13 @@ class AppThemeProvider extends ChangeNotifier {
     // _currentTheme = ThemeDat.light()
   }
 
+  void updateTheme(Color currentColor) {
+
+    print("updateTheme: $currentColor");
+
+    seedColor = currentColor;
+  }
+
   // ThemeData get currentTheme => _currentTheme;
 
   // set currentTheme(value) {

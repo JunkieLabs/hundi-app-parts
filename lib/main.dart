@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme_colors.dart';
 import 'package:provider/provider.dart';
@@ -26,19 +27,17 @@ class ThemedApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print("ThemedApp: ");
     final appThemeProvider = Provider.of<AppThemeProvider>(context);
+   print("ThemedApp: ${appThemeProvider.seedColor} ");
+   
     return MaterialApp(
       title: 'Flutter Demo',
       theme: AppTheme.themeData(seedColor: appThemeProvider.seedColor).copyWith(
-        extensions: <ThemeExtension<dynamic>>[
-          AppThemeColors.light
-        ]
-      ),
-      darkTheme: AppTheme.themeData(seedColor: appThemeProvider.seedColor, isDark: true).copyWith(
-        extensions: <ThemeExtension<dynamic>>[
-          AppThemeColors.dark
-        ]
-      ),
+          extensions: <ThemeExtension<dynamic>>[AppThemeColors.light]),
+      darkTheme: AppTheme.themeData(
+              seedColor: appThemeProvider.seedColor, isDark: true)
+          .copyWith(extensions: <ThemeExtension<dynamic>>[AppThemeColors.dark]),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -87,6 +86,34 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  List<Color> colors = [
+    Colors.red,
+    Colors.pink,
+    Colors.purple,
+    Colors.deepPurple,
+    Colors.indigo,
+    Colors.blue,
+    Colors.lightBlue,
+    Colors.cyan,
+    Colors.teal,
+    Colors.green,
+    Colors.lightGreen,
+    Colors.lime,
+    Colors.yellow,
+    Colors.amber,
+    Colors.orange,
+    Colors.deepOrange,
+    Colors.brown,
+    Colors.grey,
+    Colors.blueGrey,
+    Colors.black,
+  ];
+
+  // create some values
+  Color pickerColor = Color(0xff443a49);
+  Color currentColor = Color(0xff443a49);
+
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -96,6 +123,14 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    
+  // final state = Provider.of<AppThemeProvider>(context);
   }
 
   @override
@@ -146,10 +181,63 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: openPicker,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  // ValueChanged<Color> callback
+  void changeColor(Color color) {
+    setState(() => pickerColor = color);
+  }
+
+  openPicker() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Pick a color!'),
+            content: SingleChildScrollView(
+              child: BlockPicker(
+                availableColors: colors,
+                pickerColor: pickerColor,
+                onColorChanged: changeColor,
+              ),
+              // Use Material color picker:
+              //
+              // child: MaterialPicker(
+              //   pickerColor: pickerColor,
+              //   onColorChanged: changeColor,
+              //   showLabel: true, // only on portrait mode
+              // ),
+              //
+              // Use Block color picker:
+              //
+              // child: BlockPicker(
+              //   pickerColor: currentColor,
+              //   onColorChanged: changeColor,
+              // ),
+              //
+              // child: MultipleChoiceBlockPicker(
+              //   pickerColors: currentColors,
+              //   onColorsChanged: changeColors,
+              // ),
+            ),
+            actions: <Widget>[
+              ElevatedButton(
+                child: const Text('Got it'),
+                onPressed: () {
+                  print("object: $currentColor");
+                  setState(() => currentColor = pickerColor);
+                  print("object 2: $currentColor");
+                  context.read<AppThemeProvider>().updateTheme(currentColor);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 }

@@ -18,7 +18,7 @@ class AppTheme {
         : Colors.black.withOpacity(0.12);
 
     ColorScheme colorScheme = isDark
-        ? ColorScheme.fromSeed(seedColor: Colors.red).copyWith(
+        ? ColorScheme.fromSeed(seedColor: seedColor).copyWith(
             brightness: Brightness.dark,
 
             // onPrimary: _lightFillColor,
@@ -33,7 +33,7 @@ class AppTheme {
             primaryContainer: Color(0xFF1CDEC9),
             secondaryContainer: Color(0xFF457B6F),
           )
-        : ColorScheme.fromSeed(seedColor: Colors.red).copyWith(
+        : ColorScheme.fromSeed(seedColor: seedColor).copyWith(
             brightness: Brightness.light,
             // onPrimary: _darkFillColor,
             // onSecondary: Color(0xFF322942),
