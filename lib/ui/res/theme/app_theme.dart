@@ -7,11 +7,24 @@ class AppTheme {
 
   // static ThemeData darkThemeData = themeData(darkColorScheme, _darkFocusColor);
 
+  static Color colorSurface({bool isDark = false}){
+    var surfaceBasedColor = isDark ? Colors.black : Colors.white;
+    return surfaceBasedColor;
+
+  }
+
+  static Color colorOnSurface({bool isDark = false}){
+    var onSurfaceBasedColor = isDark ? Colors.black : Colors.white;
+    return onSurfaceBasedColor;
+
+  }
+
+
   static ThemeData themeData(
       {Color seedColor = Colors.red, bool isDark = false}) {
 
-    var surfaceBasedColor = isDark ? Colors.black : Colors.white;
-    var onSurfaceBasedColor = isDark ? Colors.white : Colors.black;
+    var surfaceBasedColor = colorSurface(isDark: isDark);
+    var onSurfaceBasedColor = colorOnSurface(isDark: isDark);
 
     final Color focusColor = isDark
         ? Colors.white.withOpacity(0.12)

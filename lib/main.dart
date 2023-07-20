@@ -29,15 +29,21 @@ class ThemedApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // print("ThemedApp: ");
     final appThemeProvider = Provider.of<AppThemeProvider>(context);
-   print("ThemedApp: ${appThemeProvider.seedColor} ");
-   
+    print("ThemedApp: ${appThemeProvider.seedColor} ");
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: AppTheme.themeData(seedColor: appThemeProvider.seedColor).copyWith(
-          extensions: <ThemeExtension<dynamic>>[AppThemeColors.light]),
+          extensions: <ThemeExtension<dynamic>>[
+            AppThemeColors.seedColor(
+                seedColor: appThemeProvider.seedColor, isDark: false)
+          ]),
       darkTheme: AppTheme.themeData(
               seedColor: appThemeProvider.seedColor, isDark: true)
-          .copyWith(extensions: <ThemeExtension<dynamic>>[AppThemeColors.dark]),
+          .copyWith(extensions: <ThemeExtension<dynamic>>[
+        AppThemeColors.seedColor(
+            seedColor: appThemeProvider.seedColor, isDark: true)
+      ]),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -113,7 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
 
-
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -129,8 +134,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    
-  // final state = Provider.of<AppThemeProvider>(context);
+
+    // final state = Provider.of<AppThemeProvider>(context);
   }
 
   @override
