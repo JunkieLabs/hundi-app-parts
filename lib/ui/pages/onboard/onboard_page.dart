@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:flutter/gestures.dart';
@@ -12,6 +13,8 @@ import 'package:hundi_flutter_parts/ui/res/values/dimens.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
 import 'package:hundi_flutter_parts/ui/widgets/hundiButton_widget.dart';
 
+
+@RoutePage() 
 class OnboardPage extends StatefulWidget {
   final String title;
   const OnboardPage({Key? key, this.title = 'OnboardPage'}) : super(key: key);
@@ -110,6 +113,7 @@ class OnboardPageState extends State<OnboardPage> {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(colors: [
                                   themeColors.primary.withOpacity(0.0),
+                                  themeColors.primaryHigh,
                                   // TbResColors.colorPrimaryDark
                                 ]),
                               )),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:hundi_flutter_parts/ui/pages/labs/labs_page.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme_colors.dart';
+import 'package:hundi_flutter_parts/ui/routes/app_router.dart';
 import 'package:provider/provider.dart';
 
 import 'ui/res/theme/app_theme_provider.dart';
@@ -18,12 +20,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AppThemeProvider>(
         create: (_) => AppThemeProvider(defaultColor: Colors.red),
-        child: const ThemedApp());
+        child:  ThemedApp());
   }
 }
 
 class ThemedApp extends StatelessWidget {
-  const ThemedApp({super.key});
+  // const
+  
+   ThemedApp({super.key});
+  final _appRouter = AppRouter();            
+  
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class ThemedApp extends StatelessWidget {
     final appThemeProvider = Provider.of<AppThemeProvider>(context);
     print("ThemedApp: ${appThemeProvider.seedColor} ");
 
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: AppTheme.themeData(seedColor: appThemeProvider.seedColor).copyWith(
           extensions: <ThemeExtension<dynamic>>[
@@ -44,7 +50,8 @@ class ThemedApp extends StatelessWidget {
         AppThemeColors.seedColor(
             seedColor: appThemeProvider.seedColor, isDark: true)
       ]),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routerConfig: _appRouter.config(),
+      // home: const LabsPage(title: 'Flutter Demo Home Page'),
     );
   }
 }
