@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+// import 'package:flutter/foundation.dart'
+//     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
@@ -13,8 +13,7 @@ import 'package:hundi_flutter_parts/ui/res/values/dimens.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
 import 'package:hundi_flutter_parts/ui/widgets/hundiButton_widget.dart';
 
-
-@RoutePage() 
+@RoutePage()
 class OnboardPage extends StatefulWidget {
   final String title;
   const OnboardPage({Key? key, this.title = 'OnboardPage'}) : super(key: key);
@@ -23,39 +22,32 @@ class OnboardPage extends StatefulWidget {
 }
 
 class OnboardPageState extends State<OnboardPage> {
-  
-  
-
   late AppThemeColors themeColors;
   late AppThemeDisplay appThemeDisplay;
 
   @override
   void initState() {
     super.initState();
-   
   }
 
   @override
   Widget build(BuildContext context) {
-    themeColors = Theme.of(context).extension<AppThemeColors>()!;
-    appThemeDisplay =  JlThemeHelper.prepareThemeMedia(context);
-    return  Scaffold(
-          resizeToAvoidBottomInset: false,
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            
-            automaticallyImplyLeading: false,
-            // title: Text(widget.title),
-            actions: [],
-          ),
-          body: _widgetContents(context),
-        );
+    themeColors = Theme.of(context).extension<AppThemeColors>() ??
+        AppThemeColors.seedColor(seedColor: Colors.blue, isDark: false);
+    appThemeDisplay = JlThemeHelper.prepareThemeMedia(context);
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+
+        automaticallyImplyLeading: false,
+        // title: Text(widget.title),
+        actions: [],
+      ),
+      body: _widgetContents(context),
+    );
   }
-
-  
-
-
 
   /* ********************************************************************
    *                            widgets
@@ -78,8 +70,7 @@ class OnboardPageState extends State<OnboardPage> {
           ),
         ),
 
-        appThemeDisplay.isSamllHeight
-                          ? JlResGaps.v_24: JlResGaps.v_32,
+        appThemeDisplay.isSamllHeight ? JlResGaps.v_24 : JlResGaps.v_32,
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: JlResDimens.dp_24),
           child: Column(
@@ -101,11 +92,11 @@ class OnboardPageState extends State<OnboardPage> {
                           Text(
                             'Hundi',
                             style: JlTextStyles.h1.copyWith(
-                                fontSize: (appThemeDisplay.isSamllHeight
-                                    ? JlResDimens.sp_32
-                                    : JlResDimens.sp_42),
-                                // color: TbResColors.colorPrimaryDark
-                                ),
+                              fontSize: (appThemeDisplay.isSamllHeight
+                                  ? JlResDimens.sp_32
+                                  : JlResDimens.sp_42),
+                              // color: TbResColors.colorPrimaryDark
+                            ),
                           ),
                           Container(
                               height: 2,
@@ -124,7 +115,6 @@ class OnboardPageState extends State<OnboardPage> {
                 ),
               ),
               JlResGaps.v_8,
-
               Text.rich(TextSpan(
                   text:
                       'Efficiently monitor your period-based Hundi groups with ease. ',
@@ -134,20 +124,18 @@ class OnboardPageState extends State<OnboardPage> {
                     TextSpan(
                       text: 'Know more',
                       style: JlTextStyles.p1.merge(
-                        const TextStyle(
-                            // color: TbResColors.colorPrimaryDark,
+                        TextStyle(
+                            color: themeColors.primaryHigh,
                             decoration: TextDecoration.underline),
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           // print('Terms of Service"');
-                         // _openAbout();
+                          // _openAbout();
                         },
                     )
                   ])),
-              
             ],
-
           ),
         ),
         // JlResGaps.v_20,
@@ -209,15 +197,12 @@ class OnboardPageState extends State<OnboardPage> {
   }
 
   Widget _widgetActions(BuildContext context) {
-   
-
     // final mFormController = TextEditingController();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: JlResDimens.dp_40),
       child: Column(
         children: [
           JlResGaps.v_24,
-         
           HundiButtonWidget(
               mOnClicked: () {
                 // _modalAuth(AuthUiConstants.CASE_LOGIN_PHONE);
@@ -238,8 +223,7 @@ class OnboardPageState extends State<OnboardPage> {
                 backgroundColor: themeColors.surface,
                 foregroundColor: themeColors.onSurface,
                 padding: const EdgeInsets.symmetric(
-                    horizontal: JlResDimens.dp_24,
-                    vertical: JlResDimens.dp_16),
+                    horizontal: JlResDimens.dp_24, vertical: JlResDimens.dp_16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
                 )),
@@ -264,7 +248,6 @@ class OnboardPageState extends State<OnboardPage> {
     );
   }
 
-  
 /* *********************************************************************************
  *                                      theme
  */
@@ -276,6 +259,5 @@ class OnboardPageState extends State<OnboardPage> {
 
     // themeColors = TbThemeHelper.prepareThemeColors(context);
     // appThemeDisplay = TbThemeHelper.prepareThemeMedia(context);
-    
   }
 }

@@ -10,10 +10,11 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes {
     return <AutoRoute>[
       AutoRoute(
+        initial: true,
         page: LabsRoute.page,
-        path: '/',
+        // path: '/',
       ),
-      
+
       AutoRoute(
         page: OnboardRoute.page,
         path: '/onboard',

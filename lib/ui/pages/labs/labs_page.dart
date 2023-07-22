@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme_provider.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
 import 'package:hundi_flutter_parts/ui/routes/app_router.dart';
@@ -93,7 +94,7 @@ class _LabsPageState extends State<LabsPage> {
               child: ElevatedButton(
                 child: const Text('Onboard'),
                 onPressed: () {
-                  context.router.push(OnboardRoute());
+                  context.go("/onboard");
                   // Modular.to.pushNamed(UiConstants.Routes.splash);
                 },
               ),
