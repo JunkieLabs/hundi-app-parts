@@ -147,7 +147,7 @@ class _LabsPageState extends State<LabsPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(JlResDimens.dp_24),
-                color: Color.alphaBlend(themeColors.onSurface.withOpacity(0.1), themeColors.surface) ),
+                color: Color.alphaBlend(themeColors.onSurface.withOpacity(0.06), themeColors.surface) ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,

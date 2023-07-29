@@ -8,13 +8,13 @@ class AppTheme {
   // static ThemeData darkThemeData = themeData(darkColorScheme, _darkFocusColor);
 
   static Color colorSurface({bool isDark = false}){
-    var surfaceBasedColor = isDark ? Colors.black : Colors.white;
+    var surfaceBasedColor = isDark ? Color.alphaBlend(Colors.white.withOpacity(0.1),Colors.black) : Colors.white;
     return surfaceBasedColor;
 
   }
 
    static Color colorBack({bool isDark = false}){
-    var surfaceBasedColor = isDark ? Color.alphaBlend(Colors.white.withOpacity(0.03),Colors.black) : Color.alphaBlend(Colors.black.withOpacity(0.03),Colors.white);
+    var surfaceBasedColor = isDark ? Colors.black : Color.alphaBlend(Colors.black.withOpacity(0.03),Colors.white);
     return surfaceBasedColor;
 
   }
