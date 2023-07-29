@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hundi_flutter_parts/ui/pages/onboard/parts/onboard_illustration.dart';
 import 'package:hundi_flutter_parts/ui/res/styles/text_styles.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme_colors.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme_display.dart';
@@ -58,16 +59,21 @@ class OnboardPageState extends State<OnboardPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         JlResGaps.v_32,
-        Expanded(
+        // Expanded(
+        //   flex: 1,
+        //   child: Container(
+        //     decoration: const BoxDecoration(
+        //       image: DecorationImage(
+        //         image: AssetImage('assets/img/pic_onboard.png'),
+        //         fit: BoxFit.fitHeight,
+        //       ),
+        //     ),
+        //   ),
+        // ),
+
+        const Expanded(
           flex: 1,
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/img/pic_onboard.png'),
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-          ),
+          child: OnboardIllustrationWidget(),
         ),
 
         appThemeDisplay.isSamllHeight ? JlResGaps.v_24 : JlResGaps.v_32,
@@ -92,11 +98,10 @@ class OnboardPageState extends State<OnboardPage> {
                           Text(
                             'Hundi',
                             style: JlTextStyles.h1.copyWith(
-                              fontSize: (appThemeDisplay.isSamllHeight
-                                  ? JlResDimens.sp_32
-                                  : JlResDimens.sp_42),
-                              // color: TbResColors.colorPrimaryDark
-                            ),
+                                fontSize: (appThemeDisplay.isSamllHeight
+                                    ? JlResDimens.sp_32
+                                    : JlResDimens.sp_42),
+                                color: themeColors.primaryHigh),
                           ),
                           Container(
                               height: 2,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hundi_flutter_parts/ui/res/styles/text_styles.dart';
+import 'package:hundi_flutter_parts/ui/res/theme/app_theme_colors.dart';
 import 'package:hundi_flutter_parts/ui/res/values/dimens.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
 
@@ -8,6 +9,7 @@ class HundiButtonWidget extends StatelessWidget {
   // static const TYPE_DEFAULT = 1;
   static const WIDTH_WRAP = 0;
   static const WIDTH_EXPANDED = 1;
+  late AppThemeColors themeColors;
 
   final String? mTxt;
   final IconData? mIconData;
@@ -21,8 +23,8 @@ class HundiButtonWidget extends StatelessWidget {
   // Color _mColorPrimaryHigh = Colors.greenAccent;
   // Color _mColorPrimary = Colors.green;
 
-  Color _mColorBackgroundHigh = Colors.greenAccent;
-  Color _mColorBackground = Colors.green;
+  // Color _mColorBackgroundHigh = Colors.greenAccent;
+  // Color _mColorBackground = Colors.green;
 
   HundiButtonWidget({
     Key? key,
@@ -41,13 +43,16 @@ class HundiButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    prepareTheme(context);
+    themeColors = Theme.of(context).extension<AppThemeColors>() ??
+        AppThemeColors.seedColor(seedColor: Colors.blue, isDark: false);
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         // elevation: 0,
         padding: EdgeInsets.zero, backgroundColor: Colors.transparent,
         minimumSize: buttonSize(),
-        shadowColor: _mColorBackground.withOpacity(0.4),
+        shadowColor: themeColors.primary.withOpacity(0.2),
+
+        // shadowColor: _mColorBackground.withOpacity(0.4),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
         ),
@@ -65,7 +70,7 @@ class HundiButtonWidget extends StatelessWidget {
           gradient: LinearGradient(
               begin: const Alignment(0, -1),
               end: const Alignment(0, 1),
-              colors: [_mColorBackgroundHigh, _mColorBackground]),
+              colors: [themeColors.primary, themeColors.primaryLight]),
           borderRadius: const BorderRadius.all(Radius.circular(18)),
         ),
         child: getChild(),

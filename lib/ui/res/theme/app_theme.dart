@@ -13,8 +13,14 @@ class AppTheme {
 
   }
 
+   static Color colorBack({bool isDark = false}){
+    var surfaceBasedColor = isDark ? Color.alphaBlend(Colors.white.withOpacity(0.03),Colors.black) : Color.alphaBlend(Colors.black.withOpacity(0.03),Colors.white);
+    return surfaceBasedColor;
+
+  }
+
   static Color colorOnSurface({bool isDark = false}){
-    var onSurfaceBasedColor = isDark ? Colors.black : Colors.white;
+    var onSurfaceBasedColor = isDark ? Colors.white :Colors.black  ;
     return onSurfaceBasedColor;
 
   }
@@ -23,12 +29,12 @@ class AppTheme {
   static ThemeData themeData(
       {Color seedColor = Colors.red, bool isDark = false}) {
 
-    var surfaceBasedColor = colorSurface(isDark: isDark);
+    var surfaceBasedColor = AppTheme.colorSurface(isDark: isDark);
+    var colorBack = AppTheme.colorBack(isDark: isDark);
     var onSurfaceBasedColor = colorOnSurface(isDark: isDark);
 
-    final Color focusColor = isDark
-        ? Colors.white.withOpacity(0.12)
-        : Colors.black.withOpacity(0.12);
+    final Color focusColor =  onSurfaceBasedColor.withOpacity(0.12);
+        // : Colors.black.withOpacity(0.12);
 
     ColorScheme colorScheme = isDark
         ? ColorScheme.fromSeed(seedColor: seedColor).copyWith(
@@ -38,7 +44,7 @@ class AppTheme {
             // onSecondary: _darkFillColor,
             // onError: _darkFillColor,
             background:
-                surfaceBasedColor, // TbResColors.colorBgDark,//_darkFillColor, //Color(0xFF241E30),
+                colorBack, // TbResColors.colorBgDark,//_darkFillColor, //Color(0xFF241E30),
             onBackground: onSurfaceBasedColor, // White with 0.05 opacity
             surface:
                 surfaceBasedColor, // TbResColors.colorSurfaceDark,//Color(0xFF1F1929),
@@ -51,9 +57,8 @@ class AppTheme {
             // onPrimary: _darkFillColor,
             // onSecondary: Color(0xFF322942),
             // onError: _darkFillColor,
-            
-            background:
-                surfaceBasedColor, //TbResColors.colorBgLight,//Color(0xFFF5F5F5),// _lightFillColor, //Color(0xFFE6EBEB),
+             background:
+                colorBack, 
             onBackground: onSurfaceBasedColor,
             surface: surfaceBasedColor, //TbResColors.colorSurfaceLight,
             onSurface: onSurfaceBasedColor, //_darkFillColor,
@@ -65,6 +70,7 @@ class AppTheme {
     return ThemeData(
       colorScheme: colorScheme,
       textTheme: _textTheme,
+      
       // Matches manifest.json colors and background color.
       primaryColor: const Color(0xFF030303),
       appBarTheme: AppBarTheme(

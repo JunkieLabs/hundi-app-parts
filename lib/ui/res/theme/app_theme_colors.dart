@@ -18,6 +18,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
 
   final Color primaryHigh; // = Colors.greenAccent;
   final Color primary;
+  final Color primaryLight;
 
   final Color seedColor;
 
@@ -30,6 +31,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     required this.onSurfaceLowest,
     required this.primaryHigh,
     required this.primary,
+    required this.primaryLight,
     required this.seedColor,
     // required this.failure,
   }) {
@@ -46,6 +48,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     Color? onSurfaceLowest,
     Color? primaryHigh,
     Color? primary,
+    Color? primaryLight,
     Color? seedColor,
   }) {
     return AppThemeColors(
@@ -62,6 +65,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
 
       primaryHigh: primaryHigh ?? this.primaryHigh, // = Colors.greenAccent;
       primary: primary ?? this.primary,
+      primaryLight: primaryLight ?? this.primaryLight,
 
       seedColor: seedColor ?? this.seedColor,
     );
@@ -88,6 +92,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
       primaryHigh:
           Color.lerp(primaryHigh, other.primaryHigh, t) ?? other.primaryHigh,
       primary: Color.lerp(primary, other.primary, t) ?? other.primary,
+      primaryLight: Color.lerp(primaryLight, other.primary, t) ?? other.primaryLight,
 
       seedColor: Color.lerp(seedColor, other.seedColor, t) ?? other.seedColor,
 
@@ -104,6 +109,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     Color seedColor = Colors.red,
     bool isDark = false,
   }) {
+    print("isDark: $isDark $seedColor");
     var surface = AppTheme.colorSurface(isDark: isDark);
     var onSurface = AppTheme.colorOnSurface(isDark: isDark);
 
@@ -117,7 +123,9 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
         JlThemeHelper.colorBlend(surface, onSurface, JlColorEmphasize.lowest);
     var primary = JlThemeHelper.colorPrimary(surface, seedColor);
     var primaryHigh =
-        JlThemeHelper.colorBlend(seedColor, onSurface, JlColorEmphasize.high);
+        JlThemeHelper.colorBlend(seedColor, onSurface, JlColorEmphasize.lowest);
+    var primaryLight =
+        JlThemeHelper.colorBlend(seedColor, surface, JlColorEmphasize.disabled);
 
     return AppThemeColors(
         surface: surface,
@@ -128,6 +136,7 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
         onSurfaceLowest: onSurfaceLowest,
         primaryHigh: primaryHigh,
         primary: primary,
+        primaryLight: primaryLight,
         seedColor: seedColor);
   }
 
