@@ -1,29 +1,22 @@
 import 'package:auto_route/auto_route.dart';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hundi_flutter_parts/ui/res/styles/text_styles.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme_colors.dart';
-import 'package:hundi_flutter_parts/ui/res/theme/app_theme_provider.dart';
+import 'package:hundi_flutter_parts/ui/res/theme/app_theme_display.dart';
+import 'package:hundi_flutter_parts/ui/res/theme/theme_helper.dart';
 import 'package:hundi_flutter_parts/ui/res/values/dimens.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
-import 'package:hundi_flutter_parts/ui/routes/app_router.dart';
 import 'package:hundi_flutter_parts/ui/shared/color_picker/color_picker.dart';
-import 'package:provider/provider.dart';
+import 'package:hundi_flutter_parts/ui/widgets/hundiButton_widget.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 @RoutePage()
 class LabsPage extends StatefulWidget {
   const LabsPage({super.key});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  // final String title;
 
   @override
   State<LabsPage> createState() => _LabsPageState();
@@ -33,6 +26,7 @@ class _LabsPageState extends State<LabsPage> {
   int _counter = 0;
 
   late AppThemeColors themeColors;
+  late AppThemeDisplay appThemeDisplay;
 
   @override
   void initState() {
@@ -46,23 +40,51 @@ class _LabsPageState extends State<LabsPage> {
     double screenWidth = MediaQuery.of(context).size.width;
     themeColors = Theme.of(context).extension<AppThemeColors>() ??
         AppThemeColors.seedColor(seedColor: Color(0xFF6CE18D), isDark: false);
+
+    appThemeDisplay = JlThemeHelper.prepareThemeMedia(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the LabsPage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("Labs"),
+        backgroundColor: Colors.transparent,
+
+        automaticallyImplyLeading: false,
+        // title: Text(widget.title),
+        actions: [],
       ),
       body: Stack(
         children: [
+          Positioned(
+              right: -42,
+              top: 0,
+              child: Transform.rotate(
+                angle: -math.pi / 6,
+                child: Container(
+                  height: 146,
+                  width: 146,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(JlResDimens.dp_12),
+                      border: Border.all(color: themeColors.primary)),
+                ),
+              )),
+          Positioned(
+            right: -42,
+            top: 0,
+            child: Transform.rotate(
+                angle: -math.pi / 4,
+                child: Container(
+                  height: 146,
+                  width: 146,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(JlResDimens.dp_12),
+                      border: Border.all(color: themeColors.onSurface)),
+                )),
+          ),
           _widgetContents(context),
           ColorPickerWidget(
             onDragCompleted: () {},
             onDragStarted: () {},
-            offset: Offset(screenWidth - 56, 156),
+            offset: Offset(screenWidth - 56, 228),
             seedColor: themeColors.seedColor,
           )
         ],
@@ -76,32 +98,119 @@ class _LabsPageState extends State<LabsPage> {
 
   _widgetContents(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: JlResDimens.dp_24),
+      padding: const EdgeInsets.symmetric(horizontal: JlResDimens.dp_24),
       // Center is a layout widget. It takes a single child and positions it
       // in the middle of the parent.
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Text(
-            'You have pushed the button this many times:',
+          JlResGaps.v_96,
+          Text(
+            'Part of',
+            style: JlTextStyles.h1.copyWith(
+                fontSize: (appThemeDisplay.isSamllHeight
+                    ? JlResDimens.sp_32
+                    : JlResDimens.sp_42),
+                color: themeColors.onSurface),
           ),
           Text(
-            '$_counter',
-            style: Theme.of(context).textTheme.headlineMedium,
+            'Hundi:',
+            style: JlTextStyles.h1.copyWith(
+                fontSize: (appThemeDisplay.isSamllHeight
+                    ? JlResDimens.sp_32
+                    : JlResDimens.sp_42),
+                color: themeColors.onSurface),
           ),
-          JlResGaps.v_16,
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              child: const Text('Onboard'),
-              onPressed: () {
-                context.go("/onboard");
-                // Modular.to.pushNamed(UiConstants.Routes.splash);
+          Text(
+            'Record Book',
+            style: JlTextStyles.h1.copyWith(
+                fontSize: (appThemeDisplay.isSamllHeight
+                    ? JlResDimens.sp_32
+                    : JlResDimens.sp_42),
+                color: themeColors.onSurface),
+          ),
+          JlResGaps.v_12,
+          Text(
+            'More parts will be public soon',
+            style: JlTextStyles.h6.copyWith(color: themeColors.onSurfaceMedium),
+          ),
+          Flexible(flex: 3, child: Container()),
+          HundiButtonWidget(
+              mOnClicked: () {
+                context.push("/onboard");
+                // _modalAuth(AuthUiConstants.CASE_LOGIN_PHONE);
               },
+              mTxt: "Check Theme",
+              widthType: HundiButtonWidget.WIDTH_EXPANDED),
+          Flexible(flex: 1, child: Container()),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(JlResDimens.dp_24),
+                color: Color.alphaBlend(themeColors.onSurface.withOpacity(0.1), themeColors.surface) ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Align(
+                  child: Text(
+                    "Download the main app",
+                    style:
+                        JlTextStyles.h6.copyWith(color: themeColors.onSurface),
+                  ),
+                ),
+                JlResGaps.v_24,
+                Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                        borderRadius: BorderRadius.circular(JlResDimens.dp_24),
+                        onTap: () => {_openPlayStore()},
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(JlResDimens.dp_16),
+                              color: themeColors.onSurface),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                'assets/svg/google_play_icon.svg',
+                                height: JlResDimens.dp_40,
+                              ),
+                              JlResGaps.h_24,
+                              SvgPicture.asset(
+                                'assets/svg/google_play_text.svg',
+                                height: JlResDimens.dp_40,
+                                colorFilter: ColorFilter.mode(
+                                    themeColors.surface, BlendMode.srcIn),
+                              ),
+                            ],
+                          ),
+                        )))
+              ],
             ),
           ),
+          JlResGaps.v_12,
         ],
       ),
     );
+  }
+
+  /* ***********************************************************************
+   *  
+   */
+
+  void _openPlayStore() async {
+    const String playStoreLink =
+        "https://play.google.com/store/apps/details?id=com.hundi.social"; // Replace with your app's Play Store link
+
+    if (await canLaunchUrlString(playStoreLink)) {
+      await launchUrlString(playStoreLink);
+    } else {
+      // Handle error: unable to open the link
+      print('Error: Could not open Play Store');
+    }
   }
 }

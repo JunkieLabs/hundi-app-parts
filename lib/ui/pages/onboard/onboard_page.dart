@@ -57,7 +57,7 @@ class OnboardPageState extends State<OnboardPage> {
           ColorPickerWidget(
             onDragCompleted: (){},
             onDragStarted: (){},
-            offset: Offset(screenWidth - 56, 156),
+            offset: Offset(screenWidth - 56, 200),
             seedColor: themeColors.seedColor,
            
           )

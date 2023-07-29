@@ -10,14 +10,7 @@ class JlThemeHelper {
 
   static Color colorBlend(Color background, Color foregroundColor,
       JlColorEmphasize foregroundEmphasize) {
-    //     color = Theme.of(context)
-    //         .colorScheme
-    //         .onSurface
-    //         .withOpacity(JlColors.alpha(foregroundEmphasize));
-    //     break;
 
-    // var backgroundColor =
-    //     TbThemeHelper.color(context, background, JlColorEmphasize.original);
 
     return Color.alphaBlend(
         foregroundColor.withOpacity(JlColors.alpha(foregroundEmphasize)),
@@ -28,14 +21,7 @@ class JlThemeHelper {
     Color background,
     Color seedColor,
   ) {
-    //     color = Theme.of(context)
-    //         .colorScheme
-    //         .onSurface
-    //         .withOpacity(JlColors.alpha(foregroundEmphasize));
-    //     break;
 
-    // var backgroundColor =
-    //     TbThemeHelper.color(context, background, JlColorEmphasize.original);
 
     return Color.alphaBlend(
         seedColor.withOpacity(JlColors.alpha(JlColorEmphasize.high)),

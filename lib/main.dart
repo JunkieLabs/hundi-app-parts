@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     print("MyApp");
     return ChangeNotifierProvider<AppThemeProvider>(
-        create: (_) => AppThemeProvider(defaultColor: Color(0xFF6CE18D)),
+        create: (_) => AppThemeProvider(defaultColor: const Color(0xFF6CE18D)),
         child:  ThemedApp());
   }
 }

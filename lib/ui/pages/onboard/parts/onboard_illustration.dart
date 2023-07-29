@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme_colors.dart';
 
 class OnboardIllustrationWidget extends StatelessWidget {
-  // static const TYPE_ICON = 0;
-  // static const TYPE_DEFAULT = 1;
-  // late AppThemeColors themeColors;
 
   const OnboardIllustrationWidget({
     Key? key,
@@ -19,7 +16,7 @@ class OnboardIllustrationWidget extends StatelessWidget {
         Container(
             decoration:  BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/img/card/pic_card_shadow.png'),
+            image: const AssetImage('assets/img/card/pic_card_shadow.png'),
             fit: BoxFit.fitHeight,
              colorFilter:
                 ColorFilter.mode(themeColors.onSurface.withOpacity(0.4), BlendMode.srcIn),
