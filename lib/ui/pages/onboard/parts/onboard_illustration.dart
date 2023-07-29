@@ -13,7 +13,7 @@ class OnboardIllustrationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var themeColors = Theme.of(context).extension<AppThemeColors>() ??
-        AppThemeColors.seedColor(seedColor: Colors.blue, isDark: false);
+        AppThemeColors.seedColor(seedColor: Color(0xFF6CE18D), isDark: false);
     return Stack(
       children: [
         Container(
@@ -63,7 +63,7 @@ class OnboardIllustrationWidget extends StatelessWidget {
           image: DecorationImage(
             image: AssetImage('assets/img/card/pic_card_bank.png'),
             fit: BoxFit.fitHeight,
-            opacity: 0.8
+            opacity: 0.9
           ),
         )),
       ],

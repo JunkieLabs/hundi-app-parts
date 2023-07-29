@@ -2,12 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hundi_flutter_parts/ui/res/theme/app_theme_colors.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/app_theme_provider.dart';
+import 'package:hundi_flutter_parts/ui/res/values/dimens.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
 import 'package:hundi_flutter_parts/ui/routes/app_router.dart';
+import 'package:hundi_flutter_parts/ui/shared/color_picker/color_picker.dart';
 import 'package:provider/provider.dart';
 
-@RoutePage() 
+@RoutePage()
 class LabsPage extends StatefulWidget {
   const LabsPage({super.key});
 
@@ -29,32 +32,7 @@ class LabsPage extends StatefulWidget {
 class _LabsPageState extends State<LabsPage> {
   int _counter = 0;
 
-  List<Color> colors = [
-    Colors.red,
-    Colors.pink,
-    Colors.purple,
-    Colors.deepPurple,
-    Colors.indigo,
-    Colors.blue,
-    Colors.lightBlue,
-    Colors.cyan,
-    Colors.teal,
-    Colors.green,
-    Colors.lightGreen,
-    Colors.lime,
-    Colors.yellow,
-    Colors.amber,
-    Colors.orange,
-    Colors.deepOrange,
-    Colors.brown,
-    Colors.grey,
-    Colors.blueGrey,
-    Colors.black,
-  ];
-
-  // create some values
-  Color pickerColor = Color(0xff443a49);
-  Color currentColor = Color(0xff443a49);
+  late AppThemeColors themeColors;
 
   @override
   void initState() {
@@ -65,6 +43,9 @@ class _LabsPageState extends State<LabsPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    themeColors = Theme.of(context).extension<AppThemeColors>() ??
+        AppThemeColors.seedColor(seedColor: Color(0xFF6CE18D), isDark: false);
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -75,72 +56,52 @@ class _LabsPageState extends State<LabsPage> {
         // the App.build method, and use it to set our appbar title.
         title: Text("Labs"),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            JlResGaps.v_16,
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                child: const Text('Onboard'),
-                onPressed: () {
-                  context.go("/onboard");
-                  // Modular.to.pushNamed(UiConstants.Routes.splash);
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: openPicker,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      body: Stack(
+        children: [
+          _widgetContents(context),
+          ColorPickerWidget(
+            onDragCompleted: () {},
+            onDragStarted: () {},
+            offset: Offset(screenWidth - 56, 156),
+            seedColor: themeColors.seedColor,
+          )
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  // ValueChanged<Color> callback
-  void changeColor(Color color) {
-    setState(() => pickerColor = color);
-  }
+  /* ********************************************************************
+   *                            widgets
+   */
 
-  openPicker() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Pick a color!'),
-            content: SingleChildScrollView(
-              child: BlockPicker(
-                availableColors: colors,
-                pickerColor: pickerColor,
-                onColorChanged: changeColor,
-              ),
+  _widgetContents(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: JlResDimens.dp_24),
+      // Center is a layout widget. It takes a single child and positions it
+      // in the middle of the parent.
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text(
+            'You have pushed the button this many times:',
+          ),
+          Text(
+            '$_counter',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          JlResGaps.v_16,
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              child: const Text('Onboard'),
+              onPressed: () {
+                context.go("/onboard");
+                // Modular.to.pushNamed(UiConstants.Routes.splash);
+              },
             ),
-            actions: <Widget>[
-              ElevatedButton(
-                child: const Text('Got it'),
-                onPressed: () {
-                  print("object: $currentColor");
-                  setState(() => currentColor = pickerColor);
-                  print("object 2: $currentColor");
-                  context.read<AppThemeProvider>().updateTheme(currentColor);
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        });
+          ),
+        ],
+      ),
+    );
   }
 }

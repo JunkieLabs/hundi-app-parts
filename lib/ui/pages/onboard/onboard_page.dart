@@ -12,6 +12,7 @@ import 'package:hundi_flutter_parts/ui/res/theme/app_theme_display.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/theme_helper.dart';
 import 'package:hundi_flutter_parts/ui/res/values/dimens.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
+import 'package:hundi_flutter_parts/ui/shared/color_picker/color_picker.dart';
 import 'package:hundi_flutter_parts/ui/widgets/hundiButton_widget.dart';
 
 @RoutePage()
@@ -33,8 +34,12 @@ class OnboardPageState extends State<OnboardPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    
+    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenHeight = MediaQuery.of(context).size.height;
     themeColors = Theme.of(context).extension<AppThemeColors>() ??
-        AppThemeColors.seedColor(seedColor: Colors.blue, isDark: false);
+        AppThemeColors.seedColor(seedColor: Color(0xFF6CE18D), isDark: false);
     appThemeDisplay = JlThemeHelper.prepareThemeMedia(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -46,7 +51,18 @@ class OnboardPageState extends State<OnboardPage> {
         // title: Text(widget.title),
         actions: [],
       ),
-      body: _widgetContents(context),
+      body: Stack(
+        children: [
+          _widgetContents(context),
+          ColorPickerWidget(
+            onDragCompleted: (){},
+            onDragStarted: (){},
+            offset: Offset(screenWidth - 56, 156),
+            seedColor: themeColors.seedColor,
+           
+          )
+        ],
+      ),
     );
   }
 

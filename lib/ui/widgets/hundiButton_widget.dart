@@ -44,7 +44,7 @@ class HundiButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     themeColors = Theme.of(context).extension<AppThemeColors>() ??
-        AppThemeColors.seedColor(seedColor: Colors.blue, isDark: false);
+        AppThemeColors.seedColor(seedColor: Color(0xFF6CE18D), isDark: false);
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         // elevation: 0,

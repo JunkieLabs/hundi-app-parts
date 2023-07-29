@@ -49,8 +49,8 @@ class AppTheme {
             surface:
                 surfaceBasedColor, // TbResColors.colorSurfaceDark,//Color(0xFF1F1929),
             onSurface: onSurfaceBasedColor,
-            primaryContainer: Color(0xFF1CDEC9),
-            secondaryContainer: Color(0xFF457B6F),
+            // primaryContainer: Color(0xFF1CDEC9),
+            // secondaryContainer: Color(0xFF457B6F),
           )
         : ColorScheme.fromSeed(seedColor: seedColor).copyWith(
             brightness: Brightness.light,
@@ -62,8 +62,8 @@ class AppTheme {
             onBackground: onSurfaceBasedColor,
             surface: surfaceBasedColor, //TbResColors.colorSurfaceLight,
             onSurface: onSurfaceBasedColor, //_darkFillColor,
-            primaryContainer: Color(0xFF117378),
-            secondaryContainer: Color(0xFFFAFBFB),
+            // primaryContainer: Color(0xFF117378),
+            // secondaryContainer: Color(0xFFFAFBFB),
           );
 
     // var colorScheme = if()
