@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,7 +13,6 @@ import 'package:hundi_flutter_parts/ui/shared/color_picker/color_picker.dart';
 import 'package:hundi_flutter_parts/ui/widgets/hundiButton_widget.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-@RoutePage()
 class LabsPage extends StatefulWidget {
   const LabsPage({super.key});
 

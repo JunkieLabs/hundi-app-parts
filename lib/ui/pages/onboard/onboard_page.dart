@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+
 // import 'package:flutter/foundation.dart'
 //     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:flutter/gestures.dart';
@@ -12,10 +12,8 @@ import 'package:hundi_flutter_parts/ui/res/theme/app_theme_display.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/theme_helper.dart';
 import 'package:hundi_flutter_parts/ui/res/values/dimens.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
-import 'package:hundi_flutter_parts/ui/shared/color_picker/color_picker.dart';
 import 'package:hundi_flutter_parts/ui/widgets/hundiButton_widget.dart';
 
-@RoutePage()
 class OnboardPage extends StatefulWidget {
   final String title;
   const OnboardPage({Key? key, this.title = 'OnboardPage'}) : super(key: key);
@@ -54,13 +52,13 @@ class OnboardPageState extends State<OnboardPage> {
       body: Stack(
         children: [
           _widgetContents(context),
-          ColorPickerWidget(
-            onDragCompleted: (){},
-            onDragStarted: (){},
-            offset: Offset(screenWidth - 56, 200),
-            seedColor: themeColors.seedColor,
+          // ColorPickerWidget(
+          //   onDragCompleted: (){},
+          //   onDragStarted: (){},
+          //   offset: Offset(screenWidth - 56, 200),
+          //   seedColor: themeColors.seedColor,
            
-          )
+          // )
         ],
       ),
     );

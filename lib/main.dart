@@ -45,6 +45,7 @@ class ThemedApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Flutter Demo',
       
+  debugShowCheckedModeBanner: false,
       theme: AppTheme.themeData(seedColor: appThemeProvider.seedColor).copyWith(
           extensions: <ThemeExtension<dynamic>>[
             AppThemeColors.seedColor(
@@ -59,12 +60,6 @@ class ThemedApp extends StatelessWidget {
       routeInformationProvider: AppRouter.router.routeInformationProvider,
       routeInformationParser: AppRouter.router.routeInformationParser,
       routerDelegate: AppRouter.router.routerDelegate,
-      // routerDelegate: _appRouter.delegate(),
-      // routeInformationParser: _appRouter.defaultRouteParser(),
-      // routeInformationProvider: _appRouter.routeInfoProvider(),
-
-      // routerConfig: _appRouter.config(),
-      // home: const LabsPage(title: 'Flutter Demo Home Page'),
     );
   }
 }

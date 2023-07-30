@@ -19,7 +19,7 @@ Hundi: Record Book is made using Flutter 3.10. This powerful app simplifies the 
 - Dynamic Theme color implementation using change notifier. Check [AppThemeProvider](lib/ui/res/theme/app_theme_provider.dart)
 - ThemeExtension implmentation in [AppThemeColor](lib/ui/res/theme/app_theme_colors.dart)
 - Setup of AppThemeProvider and AppThemeColor in [main.dart](lib/main.dart)
-- For more detail : [Read the blog](https://dev.to/nirajprakash/flutter-themes-dynamic-customization-themeextensions-4j72)  
+- For more detail : [Read the blog](https://dev.to/nirajprakash/flutter-themes-dynamic-color-themeextension-4lfp)  
 
 
 
