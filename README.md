@@ -1,16 +1,25 @@
-# hundi_flutter_parts
+# Part of Hundi: Record Book
 
-A new Flutter project.
 
-## Getting Started
+![](images/hundi_app.png)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## [Download main app on Google Play here](https://play.google.com/store/apps/details?id=com.hundi.social)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<br>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Hundi: Record Book is made using Flutter 3.10. This powerful app simplifies the management of period-based Hundi and Committee group, allowing you to effortlessly log and track transactions, payments, and contributions made by group members.
+
+`Here we are adding codes from original app, so that other developers can look into and follow the good treads`
+
+
+## Features
+
+### Dynamic Theme and Theme Extention 
+- Dynamic Theme color implementation using change notifier. Check [AppThemeProvider](lib/ui/res/theme/app_theme_provider.dart)
+- ThemeExtension implmentation in [AppThemeColor](lib/ui/res/theme/app_theme_colors.dart)
+- Setup of AppThemeProvider and AppThemeColor in [main.dart](lib/main.dart)
+- For more detail : [Read the blog](https://dev.to/nirajprakash/flutter-themes-dynamic-customization-themeextensions-4j72)  
+
+
+
