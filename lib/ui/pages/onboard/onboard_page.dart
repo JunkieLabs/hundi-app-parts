@@ -12,6 +12,7 @@ import 'package:hundi_flutter_parts/ui/res/theme/app_theme_display.dart';
 import 'package:hundi_flutter_parts/ui/res/theme/theme_helper.dart';
 import 'package:hundi_flutter_parts/ui/res/values/dimens.dart';
 import 'package:hundi_flutter_parts/ui/res/values/gaps.dart';
+import 'package:hundi_flutter_parts/ui/shared/color_picker/color_picker.dart';
 import 'package:hundi_flutter_parts/ui/widgets/hundiButton_widget.dart';
 
 class OnboardPage extends StatefulWidget {
@@ -52,13 +53,13 @@ class OnboardPageState extends State<OnboardPage> {
       body: Stack(
         children: [
           _widgetContents(context),
-          // ColorPickerWidget(
-          //   onDragCompleted: (){},
-          //   onDragStarted: (){},
-          //   offset: Offset(screenWidth - 56, 200),
-          //   seedColor: themeColors.seedColor,
+          ColorPickerWidget(
+            onDragCompleted: (){},
+            onDragStarted: (){},
+            offset: Offset(screenWidth - 56, 200),
+            seedColor: themeColors.seedColor,
            
-          // )
+          )
         ],
       ),
     );

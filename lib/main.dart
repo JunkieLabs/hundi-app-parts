@@ -45,7 +45,7 @@ class ThemedApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Flutter Demo',
       
-  debugShowCheckedModeBanner: false,
+  // debugShowCheckedModeBanner: false,
       theme: AppTheme.themeData(seedColor: appThemeProvider.seedColor).copyWith(
           extensions: <ThemeExtension<dynamic>>[
             AppThemeColors.seedColor(
